@@ -25,19 +25,34 @@ public class MovementController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         activeSpriteRenderer = spriteRendererDown;
+
+        if (spriteRendererUp == null || spriteRendererDown == null ||
+            spriteRendererLeft == null || spriteRendererRight == null || spriteRendererDeath == null)
+        {
+            Debug.LogWarning($"{name}: MovementController is missing one or more sprite renderer references.", this);
+        }
     }
 
     private void Update()
     {
-        if (Input.GetKey(inputUp)) {
+        if (Input.GetKey(inputUp))
+        {
             SetDirection(Vector2.up, spriteRendererUp);
-        } else if (Input.GetKey(inputDown)) {
+        }
+        else if (Input.GetKey(inputDown))
+        {
             SetDirection(Vector2.down, spriteRendererDown);
-        } else if (Input.GetKey(inputLeft)) {
+        }
+        else if (Input.GetKey(inputLeft))
+        {
             SetDirection(Vector2.left, spriteRendererLeft);
-        } else if (Input.GetKey(inputRight)) {
+        }
+        else if (Input.GetKey(inputRight))
+        {
             SetDirection(Vector2.right, spriteRendererRight);
-        } else {
+        }
+        else
+        {
             SetDirection(Vector2.zero, activeSpriteRenderer);
         }
     }
@@ -54,18 +69,22 @@ public class MovementController : MonoBehaviour
     {
         direction = newDirection;
 
-        spriteRendererUp.enabled = spriteRenderer == spriteRendererUp;
-        spriteRendererDown.enabled = spriteRenderer == spriteRendererDown;
-        spriteRendererLeft.enabled = spriteRenderer == spriteRendererLeft;
-        spriteRendererRight.enabled = spriteRenderer == spriteRendererRight;
+        SetRendererEnabled(spriteRendererUp, spriteRenderer == spriteRendererUp);
+        SetRendererEnabled(spriteRendererDown, spriteRenderer == spriteRendererDown);
+        SetRendererEnabled(spriteRendererLeft, spriteRenderer == spriteRendererLeft);
+        SetRendererEnabled(spriteRendererRight, spriteRenderer == spriteRendererRight);
 
         activeSpriteRenderer = spriteRenderer;
-        activeSpriteRenderer.idle = direction == Vector2.zero;
+        if (activeSpriteRenderer != null)
+        {
+            activeSpriteRenderer.idle = direction == Vector2.zero;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Explosion")) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Explosion"))
+        {
             DeathSequence();
         }
     }
@@ -74,15 +93,16 @@ public class MovementController : MonoBehaviour
     {
         enabled = false;
         BombController bombController = GetComponent<BombController>();
-            if (bombController != null) {
-                bombController.enabled = false;
+        if (bombController != null)
+        {
+            bombController.enabled = false;
         }
 
-        spriteRendererUp.enabled = false;
-        spriteRendererDown.enabled = false;
-        spriteRendererLeft.enabled = false;
-        spriteRendererRight.enabled = false;
-        spriteRendererDeath.enabled = true;
+        SetRendererEnabled(spriteRendererUp, false);
+        SetRendererEnabled(spriteRendererDown, false);
+        SetRendererEnabled(spriteRendererLeft, false);
+        SetRendererEnabled(spriteRendererRight, false);
+        SetRendererEnabled(spriteRendererDeath, true);
 
         Invoke(nameof(OnDeathSequenceEnded), 1.25f);
     }
@@ -90,11 +110,18 @@ public class MovementController : MonoBehaviour
     private void OnDeathSequenceEnded()
     {
         gameObject.SetActive(false);
-        
-        if (GameManager.Instance != null) {
+
+        if (GameManager.Instance != null)
+        {
             GameManager.Instance.CheckWinState();
         }
-
     }
 
+    private static void SetRendererEnabled(AnimatedSpriteRenderer renderer, bool isEnabled)
+    {
+        if (renderer != null)
+        {
+            renderer.enabled = isEnabled;
+        }
+    }
 }
