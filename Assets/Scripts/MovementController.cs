@@ -73,7 +73,10 @@ public class MovementController : MonoBehaviour
     private void DeathSequence()
     {
         enabled = false;
-        GetComponent<BombController>().enabled = false;
+        BombController bombController = GetComponent<BombController>();
+            if (bombController != null) {
+                bombController.enabled = false;
+        }
 
         spriteRendererUp.enabled = false;
         spriteRendererDown.enabled = false;
@@ -87,7 +90,11 @@ public class MovementController : MonoBehaviour
     private void OnDeathSequenceEnded()
     {
         gameObject.SetActive(false);
-        GameManager.Instance.CheckWinState();
+        
+        if (GameManager.Instance != null) {
+            GameManager.Instance.CheckWinState();
+        }
+
     }
 
 }
