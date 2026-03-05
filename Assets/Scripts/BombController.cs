@@ -10,6 +10,7 @@ public class BombController : MonoBehaviour
     public float bombFuseTime = 3f;
     public int bombAmount = 1;
     private int bombsRemaining;
+    private bool canPlaceBomb = true;
 
     [Header("Explosion")]
     public Explosion explosionPrefab;
@@ -24,11 +25,12 @@ public class BombController : MonoBehaviour
     private void OnEnable()
     {
         bombsRemaining = bombAmount;
+        canPlaceBomb = true;
     }
 
     private void Update()
     {
-        if (bombsRemaining > 0 && Input.GetKeyDown(inputKey)) {
+        if (canPlaceBomb && bombsRemaining > 0 && Input.GetKeyDown(inputKey)) {
             StartCoroutine(PlaceBomb());
         }
     }
@@ -99,6 +101,16 @@ public class BombController : MonoBehaviour
     {
         bombAmount++;
         bombsRemaining++;
+    }
+
+    public void DisableBombPlacement()
+    {
+        canPlaceBomb = false;
+    }
+
+    public bool HasActiveBombs()
+    {
+        return bombsRemaining < bombAmount;
     }
 
     private void OnTriggerExit2D(Collider2D other)

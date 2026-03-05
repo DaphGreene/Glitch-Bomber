@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -5,6 +6,7 @@ public class MovementController : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Vector2 direction = Vector2.down;
+    private bool isDead;
     public float speed = 5f;
 
     [Header("Input")]
@@ -35,30 +37,91 @@ public class MovementController : MonoBehaviour
 
     private void Update()
     {
+        if (isDead)
+        {
+            return;
+        }
+
+        float horizontalInput = 0f;
+        if (Input.GetKey(inputLeft))
+        {
+            horizontalInput -= 1f;
+        }
+        if (Input.GetKey(inputRight))
+        {
+            horizontalInput += 1f;
+        }
+
+        float verticalInput = 0f;
+        if (Input.GetKey(inputDown))
+        {
+            verticalInput -= 1f;
+        }
         if (Input.GetKey(inputUp))
         {
-            SetDirection(Vector2.up, spriteRendererUp);
+            verticalInput += 1f;
         }
-        else if (Input.GetKey(inputDown))
+
+        Vector2 inputDirection = new Vector2(horizontalInput, verticalInput);
+        if (inputDirection.sqrMagnitude > 1f)
         {
-            SetDirection(Vector2.down, spriteRendererDown);
+            inputDirection.Normalize();
         }
-        else if (Input.GetKey(inputLeft))
-        {
-            SetDirection(Vector2.left, spriteRendererLeft);
-        }
-        else if (Input.GetKey(inputRight))
-        {
-            SetDirection(Vector2.right, spriteRendererRight);
-        }
-        else
+
+        if (inputDirection == Vector2.zero)
         {
             SetDirection(Vector2.zero, activeSpriteRenderer);
+            return;
         }
+
+        SetDirection(inputDirection, GetSpriteRendererForDirection(inputDirection));
+    }
+
+    private AnimatedSpriteRenderer GetSpriteRendererForDirection(Vector2 inputDirection)
+    {
+        bool hasHorizontalInput = !Mathf.Approximately(inputDirection.x, 0f);
+        bool hasVerticalInput = !Mathf.Approximately(inputDirection.y, 0f);
+
+        if (hasHorizontalInput && hasVerticalInput)
+        {
+            if (inputDirection.y > 0f && activeSpriteRenderer == spriteRendererUp)
+            {
+                return spriteRendererUp;
+            }
+            if (inputDirection.y < 0f && activeSpriteRenderer == spriteRendererDown)
+            {
+                return spriteRendererDown;
+            }
+            if (inputDirection.x < 0f && activeSpriteRenderer == spriteRendererLeft)
+            {
+                return spriteRendererLeft;
+            }
+            if (inputDirection.x > 0f && activeSpriteRenderer == spriteRendererRight)
+            {
+                return spriteRendererRight;
+            }
+        }
+
+        if (Mathf.Abs(inputDirection.x) > Mathf.Abs(inputDirection.y))
+        {
+            return inputDirection.x > 0f ? spriteRendererRight : spriteRendererLeft;
+        }
+
+        if (inputDirection.y > 0f)
+        {
+            return spriteRendererUp;
+        }
+
+        return spriteRendererDown;
     }
 
     private void FixedUpdate()
     {
+        if (isDead)
+        {
+            return;
+        }
+
         Vector2 position = rb.position;
         Vector2 translation = speed * Time.fixedDeltaTime * direction;
 
@@ -83,6 +146,11 @@ public class MovementController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (isDead)
+        {
+            return;
+        }
+
         if (other.gameObject.layer == LayerMask.NameToLayer("Explosion"))
         {
             DeathSequence();
@@ -91,11 +159,16 @@ public class MovementController : MonoBehaviour
 
     private void DeathSequence()
     {
-        enabled = false;
+        if (isDead)
+        {
+            return;
+        }
+
+        isDead = true;
         BombController bombController = GetComponent<BombController>();
         if (bombController != null)
         {
-            bombController.enabled = false;
+            bombController.DisableBombPlacement();
         }
 
         SetRendererEnabled(spriteRendererUp, false);
@@ -108,6 +181,28 @@ public class MovementController : MonoBehaviour
     }
 
     private void OnDeathSequenceEnded()
+    {
+        BombController bombController = GetComponent<BombController>();
+        if (bombController != null && bombController.HasActiveBombs())
+        {
+            StartCoroutine(WaitForActiveBombsToResolve(bombController));
+            return;
+        }
+
+        CompleteDeathSequence();
+    }
+
+    private IEnumerator WaitForActiveBombsToResolve(BombController bombController)
+    {
+        while (bombController != null && bombController.HasActiveBombs())
+        {
+            yield return null;
+        }
+
+        CompleteDeathSequence();
+    }
+
+    private void CompleteDeathSequence()
     {
         gameObject.SetActive(false);
 

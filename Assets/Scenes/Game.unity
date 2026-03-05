@@ -2075,7 +2075,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -1443316511, guid: 376aeeadf7260d94e8066c25cd3dd0cc, type: 3}
+  m_Sprite: {fileID: 1125137675061664269, guid: 5301e80fd16f542f6bc9218b4ea44b4e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2097,12 +2097,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 876a10449f30443a086aba967524e998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimatedSpriteRenderer
-  idleSprite: {fileID: -1443316511, guid: 376aeeadf7260d94e8066c25cd3dd0cc, type: 3}
+  idleSprite: {fileID: 1125137675061664269, guid: 5301e80fd16f542f6bc9218b4ea44b4e, type: 3}
   animationSprites:
-  - {fileID: -1443316511, guid: 376aeeadf7260d94e8066c25cd3dd0cc, type: 3}
-  - {fileID: 1298318350, guid: 376aeeadf7260d94e8066c25cd3dd0cc, type: 3}
-  - {fileID: -460547727, guid: 376aeeadf7260d94e8066c25cd3dd0cc, type: 3}
-  - {fileID: 667931097, guid: 376aeeadf7260d94e8066c25cd3dd0cc, type: 3}
+  - {fileID: 1125137675061664269, guid: 5301e80fd16f542f6bc9218b4ea44b4e, type: 3}
+  - {fileID: -2684280889621230491, guid: 5301e80fd16f542f6bc9218b4ea44b4e, type: 3}
+  - {fileID: -561878499752435886, guid: 5301e80fd16f542f6bc9218b4ea44b4e, type: 3}
+  - {fileID: 7645836986687357633, guid: 5301e80fd16f542f6bc9218b4ea44b4e, type: 3}
   animationTime: 0.16666667
   loop: 1
   idle: 1
@@ -2301,7 +2301,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 1062870716, guid: 376aeeadf7260d94e8066c25cd3dd0cc, type: 3}
+  m_Sprite: {fileID: -1642170509, guid: 5301e80fd16f542f6bc9218b4ea44b4e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2323,12 +2323,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 876a10449f30443a086aba967524e998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimatedSpriteRenderer
-  idleSprite: {fileID: 1062870716, guid: 376aeeadf7260d94e8066c25cd3dd0cc, type: 3}
+  idleSprite: {fileID: -1642170509, guid: 5301e80fd16f542f6bc9218b4ea44b4e, type: 3}
   animationSprites:
-  - {fileID: 1062870716, guid: 376aeeadf7260d94e8066c25cd3dd0cc, type: 3}
-  - {fileID: -19855034, guid: 376aeeadf7260d94e8066c25cd3dd0cc, type: 3}
-  - {fileID: 2143159505, guid: 376aeeadf7260d94e8066c25cd3dd0cc, type: 3}
-  - {fileID: 216819497, guid: 376aeeadf7260d94e8066c25cd3dd0cc, type: 3}
+  - {fileID: -1642170509, guid: 5301e80fd16f542f6bc9218b4ea44b4e, type: 3}
+  - {fileID: -606954220, guid: 5301e80fd16f542f6bc9218b4ea44b4e, type: 3}
+  - {fileID: -1059542281, guid: 5301e80fd16f542f6bc9218b4ea44b4e, type: 3}
+  - {fileID: 1070179009, guid: 5301e80fd16f542f6bc9218b4ea44b4e, type: 3}
   animationTime: 0.16666667
   loop: 1
   idle: 1
@@ -3136,7 +3136,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 1151982290, guid: 376aeeadf7260d94e8066c25cd3dd0cc, type: 3}
+  m_Sprite: {fileID: -625213187, guid: 5301e80fd16f542f6bc9218b4ea44b4e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3158,12 +3158,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 876a10449f30443a086aba967524e998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimatedSpriteRenderer
-  idleSprite: {fileID: 1151982290, guid: 376aeeadf7260d94e8066c25cd3dd0cc, type: 3}
+  idleSprite: {fileID: -625213187, guid: 5301e80fd16f542f6bc9218b4ea44b4e, type: 3}
   animationSprites:
-  - {fileID: 1151982290, guid: 376aeeadf7260d94e8066c25cd3dd0cc, type: 3}
-  - {fileID: -1477457406, guid: 376aeeadf7260d94e8066c25cd3dd0cc, type: 3}
-  - {fileID: 781863194, guid: 376aeeadf7260d94e8066c25cd3dd0cc, type: 3}
-  - {fileID: -1932145848, guid: 376aeeadf7260d94e8066c25cd3dd0cc, type: 3}
+  - {fileID: -625213187, guid: 5301e80fd16f542f6bc9218b4ea44b4e, type: 3}
+  - {fileID: 2002368080, guid: 5301e80fd16f542f6bc9218b4ea44b4e, type: 3}
+  - {fileID: 897316166, guid: 5301e80fd16f542f6bc9218b4ea44b4e, type: 3}
+  - {fileID: -1709599013, guid: 5301e80fd16f542f6bc9218b4ea44b4e, type: 3}
   animationTime: 0.16666667
   loop: 1
   idle: 1
@@ -3398,7 +3398,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2092094116, guid: 376aeeadf7260d94e8066c25cd3dd0cc, type: 3}
+  m_Sprite: {fileID: 2012210072, guid: 5301e80fd16f542f6bc9218b4ea44b4e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3420,12 +3420,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 876a10449f30443a086aba967524e998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimatedSpriteRenderer
-  idleSprite: {fileID: -2092094116, guid: 376aeeadf7260d94e8066c25cd3dd0cc, type: 3}
+  idleSprite: {fileID: 2012210072, guid: 5301e80fd16f542f6bc9218b4ea44b4e, type: 3}
   animationSprites:
-  - {fileID: -2092094116, guid: 376aeeadf7260d94e8066c25cd3dd0cc, type: 3}
-  - {fileID: 665703817, guid: 376aeeadf7260d94e8066c25cd3dd0cc, type: 3}
-  - {fileID: 1484955906, guid: 376aeeadf7260d94e8066c25cd3dd0cc, type: 3}
-  - {fileID: -1546604602, guid: 376aeeadf7260d94e8066c25cd3dd0cc, type: 3}
+  - {fileID: 2012210072, guid: 5301e80fd16f542f6bc9218b4ea44b4e, type: 3}
+  - {fileID: 1308540148, guid: 5301e80fd16f542f6bc9218b4ea44b4e, type: 3}
+  - {fileID: -379754707, guid: 5301e80fd16f542f6bc9218b4ea44b4e, type: 3}
+  - {fileID: 548585881, guid: 5301e80fd16f542f6bc9218b4ea44b4e, type: 3}
   animationTime: 0.16666667
   loop: 1
   idle: 1
